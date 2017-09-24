@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/twenty_48'
+
+Twenty48.start
