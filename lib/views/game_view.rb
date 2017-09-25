@@ -4,10 +4,15 @@ module GameView
     puts "***************************************"
     puts "               SCORE: #{score}"
     puts "***************************************"
-    puts
+
+    board_string = ""
     board.each_slice(4) do |row|
-      puts row.join(" ")
+      board_string << "\n"
+      board_string << "\t  " + row.join("  |  ")
+      board_string << "\n"
     end
+    puts board_string
+    puts
   end
 
   def self.reset_screen

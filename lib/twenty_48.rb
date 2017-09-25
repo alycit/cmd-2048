@@ -4,22 +4,25 @@ require_relative 'views/menu_view'
 require 'io/console'
 
 module Twenty48
-  def self.start
 
-    MenuView.render_start_menu
+  COMMANDS = {"w" => :move_up, "s" => :move_down, "a" => :move_left, "d" => :move_right}
+
+  def self.start
     game = Game.new
 
     until game.over?
-
+      GameView.reset_screen
+      MenuView.render_start_menu
       GameView.render(game.board, game.score)
       command = STDIN.getch
 
-      if command == "x"
+      if command == "q"
         MenuView.render_exit_menu
         abort
       else
-        game.move(command)
-        GameView.reset_screen
+        unless COMMANDS[command].nil?
+          game.move(COMMANDS[command])
+        end
       end
     end
   end
